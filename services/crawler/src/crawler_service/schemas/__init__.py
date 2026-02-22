@@ -1,0 +1,61 @@
+# schemas/__init__.py
+
+from crawler_service.schemas.agent import (
+    AgentBase,
+    AgentConnectionType,
+    AgentCreate,
+    AgentHealthCheckResponse,
+    AgentHeartbeatRequest,
+    AgentHeartbeatResponse,
+    AgentListResponse,
+    AgentResponse,
+    AgentStatsResponse,
+    AgentStatus,
+    AgentUpdate,
+)
+from crawler_service.schemas.task import (
+    ExecutionMethod,
+    TaskBase,
+    TaskCancelRequest,
+    TaskCreate,
+    TaskExecutionRequest,
+    TaskExecutionResponse,
+    TaskListResponse,
+    TaskLogResponse,
+    TaskResponse,
+    TaskRetryRequest,
+    TaskStatsResponse,
+    TaskStatus,
+    TaskType,
+    TaskUpdate,
+)
+
+__all__ = [
+    # Task
+    "TaskType",
+    "TaskStatus",
+    "ExecutionMethod",
+    "TaskBase",
+    "TaskCreate",
+    "TaskUpdate",
+    "TaskResponse",
+    "TaskListResponse",
+    "TaskExecutionResponse",
+    "TaskLogResponse",
+    "TaskStatsResponse",
+    "TaskExecutionRequest",
+    "TaskCancelRequest",
+    "TaskRetryRequest",
+    # Agent
+    "AgentStatus",
+    "AgentConnectionType",
+    "AgentBase",
+    "AgentCreate",
+    "AgentUpdate",
+    "AgentResponse",
+    "AgentListResponse",
+    "AgentHeartbeatRequest",
+    "AgentHeartbeatResponse",
+    "AgentStatsResponse",
+    "AgentHealthCheckResponse",
+]
