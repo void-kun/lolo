@@ -1,7 +1,10 @@
 import re
+from datetime import datetime
+from uuid import UUID
 
-from sqlalchemy import UUID, Column, DateTime, func
-from sqlalchemy.orm import DeclarativeBase, declared_attr
+from sqlalchemy import UUID as PG_UUID
+from sqlalchemy import DateTime, func
+from sqlalchemy.orm import DeclarativeBase, Mapped, declared_attr, mapped_column
 
 
 class Base(DeclarativeBase):
@@ -13,18 +16,18 @@ class Base(DeclarativeBase):
         name = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", cls.__name__)
         return re.sub("([a-z0-9])([A-Z])", r"\1_\2", name).lower()
 
-    created_at = Column(
+    created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         nullable=False,
         server_default=func.now(),
     )
-    updated_at = Column(
+    updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=False),
         nullable=False,
         server_default=func.now(),
         onupdate=func.now(),
     )
-    created_user = Column(UUID(as_uuid=True), nullable=True)
+    created_user: Mapped[UUID] = mapped_column(PG_UUID(as_uuid=True), nullable=True)
 
     def __repr__(self) -> str:
         """Generate a string representation of the model instance."""

@@ -2,9 +2,9 @@ import sys
 from logging.config import fileConfig
 from pathlib import Path
 
-from sqlalchemy import engine_from_config, pool
-
+import alembic_postgresql_enum  # noqa: F401 - Ensure this is imported to register the enum types
 from alembic import context
+from sqlalchemy import engine_from_config, pool
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from crawler_service.core.config import get_settings

@@ -1,11 +1,10 @@
 from uuid import UUID
 
-from loguru import logger
-from sqlalchemy.ext.asyncio import AsyncSession
-
-from crawler_service.models.enum import TaskStatus
+from crawler_service.models.enum import ExecutionMethod, TaskStatus
 from crawler_service.models.task import Task
 from crawler_service.schemas.task import TaskCreate, TaskUpdate
+from loguru import logger
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class TaskManager:
@@ -58,3 +57,9 @@ class TaskManager:
         """Internal method to dispatch a task for execution"""
 
         pass
+
+    def _validate_task(self, task: Task):
+        """Validate a new task"""
+        if task.execution_method == ExecutionMethod.SCRIPT:
+            if "script_path" not in task.config:
+                raise ValueError("script_path is required")

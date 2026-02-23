@@ -12,9 +12,9 @@ dependencies = [
   "psycopg2-binary>=2.9.11",
   "pydantic-settings>=2.13.1",
   "sqlalchemy>=2.0.46",
-
   # shared packages
   "shared-utils",
+  "alembic-postgresql-enum>=1.9.0",
 ]
 
 [tool.uv.sources]

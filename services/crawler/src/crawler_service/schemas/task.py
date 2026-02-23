@@ -1,8 +1,7 @@
 from datetime import datetime
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 from uuid import UUID
 
-from alembic.environment import Any
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from crawler_service.models.enum import ExecutionMethod, TaskStatus, TaskType

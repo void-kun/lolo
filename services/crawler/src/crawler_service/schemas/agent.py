@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Any, Dict, Optional
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from crawler_service.models.enum import AgentConnectionType, AgentStatus
 
@@ -16,7 +16,7 @@ class AgentBase(BaseModel):
     capabilities: Dict[str, Any] = Field(default_factory=dict)
     max_concurrent_tasks: int = Field(default=1, ge=1, le=10)
 
-    @Field.validator("endpoint")
+    @field_validator("endpoint")
     @classmethod
     def validate_endpoint(cls, v: str) -> str:
         if not v:
@@ -32,14 +32,13 @@ class AgentBase(BaseModel):
 
         return v
 
-    @Field.validator("capabilities")
+    @field_validator("capabilities")
     @classmethod
     def validate_capabilities(cls, v: Dict[str, Any]) -> Dict[str, Any]:
         if "max_concurrent_tasks" in v and not isinstance(
             v["max_concurrent_tasks"], int
         ):
             raise ValueError("capabilities.max_concurrent_tasks must be an integer")
-
         return v
 
 
@@ -59,7 +58,6 @@ class AgentUpdate(BaseModel):
     max_concurrent_tasks: Optional[int] = Field(None, ge=1, le=10)
     api_key: Optional[str] = Field(None)
     status: Optional[AgentStatus] = None
-
     model_config = ConfigDict(extra="ignore")
 
 
@@ -68,20 +66,16 @@ class AgentResponse(AgentBase):
 
     id: UUID
     status: AgentStatus
-
     # Health
     last_heartbeat: Optional[datetime] = None
     current_tasks: int
-
     # Stats
     total_tasks_completed: int
     total_tasks_failed: int
     avg_response_time_ms: Optional[float] = None
-
     # Timestamps
     created_at: datetime
     updated_at: datetime
-
     api_key: Optional[str] = Field(None, exclude=True)
     model_config = ConfigDict(from_attributes=True)
 

@@ -2,35 +2,35 @@ from enum import StrEnum
 
 
 class TaskType(StrEnum):
-    ONE_TIME = "one_time"
-    RECURRING = "recurring"
-    SCHEDULED = "scheduled"
+    ONE_TIME = "ONE_TIME"
+    RECURRING = "RECURRING"
+    SCHEDULED = "SCHEDULED"
 
 
 class TaskStatus(StrEnum):
-    PENDING = "pending"
-    QUEUED = "queued"
-    RUNNING = "running"
-    COMPLETED = "completed"
-    FAILED = "failed"
-    CANCELED = "canceled"
-    RETRYING = "retrying"
+    PENDING = "PENDING"
+    QUEUED = "QUEUED"
+    RUNNING = "RUNNING"
+    COMPLETED = "COMPLETED"
+    FAILED = "FAILED"
+    CANCELED = "CANCELED"
+    RETRYING = "RETRYING"
 
 
 class ExecutionMethod(StrEnum):
-    SCRIPT = "script"
-    AGENT_GRPC = "agent_grpc"
-    AGENT_HTTP = "agent_http"
-    DIRECT = "direct"
+    SCRIPT = "SCRIPT"
+    AGENT_GRPC = "AGENT_GRPC"
+    AGENT_HTTP = "AGENT_HTTP"
+    DIRECT = "DIRECT"
 
 
 class AgentStatus(StrEnum):
-    ONLINE = "online"
-    OFFLINE = "offline"
-    BUSY = "busy"
-    ERROR = "error"
+    ONLINE = "ONLINE"
+    OFFLINE = "OFFLINE"
+    BUSY = "BUSY"
+    ERROR = "ERROR"
 
 
 class AgentConnectionType(StrEnum):
-    GRPC = "grpc"
-    HTTP = "http"
+    GRPC = "GRPC"
+    HTTP = "HTTP"
